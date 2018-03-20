@@ -106,7 +106,47 @@ public class Graf {
 		
 		
 		}
+	
+	//metoda poln, vrne poln graf na n toèkah
+	public static Graf poln(int n){
+		Graf graf = prazen(n);
 		
+		for (int i=1; i <= n; i++) {			
+			for(int j=1; j<= n; j++) {
+				graf.dodajPovezavo(graf.tocka(i), graf.tocka(j));
+				}
+		}
+		return(graf);
+	}
+	
+	// metoda polndvodelen vrne poln dvodelen graf na n+m tockah
+	public static Graf polnDvodelen(int n, int m) {
+		Graf graf = prazen(n+m);
+		for (int i=1; i <= n; i++) {
+			for (int j  = n+1; j <= m+n; j++) {
+				graf.povezava(graf.tocka(i), graf.tocka(j));
+			}
+			
+		}
+		return graf;
+		
+	}
+	
+	public void izpis() {
+		for (Object ime: this.tocke.keySet()) {
+			Tocka tocka = this.tocka(ime);
+			String sosedi = "";
+			
+			for (Tocka sosed: tocka.sosedi) {
+				sosedi += " "+sosed.toString();
+			}
+			System.out.println("Tocka:" + tocka +", njene sosedne tocke: " + sosedi );
+		}
+		}
+	
+	
+	
+	
 	}
 	
 	
