@@ -1,0 +1,9 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		Tocka tocka1 = new Tocka("toèka1");
+		System.out.println(tocka1.ime);
+	}
+
+}

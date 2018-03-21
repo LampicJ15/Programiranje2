@@ -1,0 +1,69 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Graf {
+	
+	protected Map<Object, Tocka>tocke;
+	
+	/*
+	 * Konstruktor, ki sestavi graf brez tock
+	 */
+
+	public Graf() {
+		super();
+		this.tocke = new HashMap<Object, Tocka>();
+	}
+	
+	//Metoda, ki vrne tocko z danim imenom
+	
+	public Object tocka(Object ime) {
+		return tocke.get(ime);
+	}
+	
+	//Metoda povezava preveri, èe obstaja povezava med tocko1 in tocko2
+	
+	public boolean povezava(Tocka tocka1, Tocka tocka2) {
+		return (tocka1.sosedi.contains(tocka2));
+	}
+	
+	//Metoda dodajTocko doda toèkografu, èe toèke s takim imenom še ni v grafu
+	public void dodajTocko(Tocka point) {
+		if (!tocke.containsKey(point)) {
+			tocke.put(point.ime, point);
+		}
+	
+	}
+	
+	//metoda dodajPovezavo, grafu doda povezavo med dvema tockama (ce sta razlicni in se nista povezani)
+	public void dodajPovezavo(Tocka tocka1, Tocka tocka2) {
+		if ((tocka1 != tocka2) && !povezava(tocka1, tocka2)) {
+			tocka1.sosedi.add(tocka2);
+			tocka2.sosedi.add(tocka1);
+			
+			tocke.put(tocka1.ime, tocka1);
+			tocke.put(tocka2.ime, tocka2);
+		}
+	}
+	
+	//metoda odstraniPovezavo iz grafa odstrani povezavo med danima tockama	
+	public void odstraniPovezavo(Tocka tocka1, Tocka tocka2) {
+		if(povezava(tocka1, tocka2)) {
+			tocka1.sosedi.remove(tocka2);
+			tocka2.sosedi.remove(tocka1);
+		}
+	}
+	
+	//metoda odstraniTocko odstrani toèko iz grafa
+	public void odstraniTocko(Tocka tocka1) {
+		for (Object imeTocke : tocke.keySet()) {
+			Tocka tocka2 = tocke.get(imeTocke); //tocko2 poklièemo iz slovarja da dobimo objekt 
+			if ( tocka1.sosedi.contains(tocka2)) {
+				tocka2.sosedi.remove(tocka1);
+			}
+		}
+		tocke.remove(tocka1.ime, tocka1);
+	}
+	
+	
+
+}

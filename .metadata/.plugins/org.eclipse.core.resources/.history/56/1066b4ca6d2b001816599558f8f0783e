@@ -1,0 +1,11 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		final int RADIX = 10;
+		int i = 4;
+		char ch = Character.forDigit(i, RADIX);
+		System.out.println(ch); // Prints '4'
+	}
+
+}

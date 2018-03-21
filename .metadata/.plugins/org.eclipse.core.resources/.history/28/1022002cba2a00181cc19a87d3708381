@@ -1,0 +1,40 @@
+
+public class MnozenjeMatrik {
+	
+	/*
+	 * Funkcija skalarniProdukt vrne skalarni produkt dveh vektorejv/seznamov
+	 */
+	
+	public static float skalarniProdukt(float[] v1, float[] v2) {
+		float vsota = 0;
+		
+		for(int i=0; i < v1.length; i+=1) {
+			vsota += v1[i] * v2[i];
+		}
+		
+		return(vsota);
+	}
+	
+	/*
+	 * funkcija transponiraj prejeme matriko in jo transponira
+	 */
+	
+	public static float[][] transponiraj(float[][] matrika) {
+		int i = matrika.length; //število vrstic
+		int j = matrika[0].length; //število stolpcev
+		
+		float [][] trMatrika = new float[j][i];
+		
+		for (int x=0; x < i;x+=1){
+			for(int y=0; y<j; y+=1) {
+				trMatrika[y][x] = matrika[x][y];
+			}
+		}
+		
+		return(trMatrika);
+		
+	}
+
+
+
+}
