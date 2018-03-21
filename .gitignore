@@ -1,3 +1,6 @@
+*.metadata
+*.recommeders
+
 # Compiled class file
 *.class
 
