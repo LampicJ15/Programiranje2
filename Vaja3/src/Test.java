@@ -27,6 +27,8 @@ public class Test {
 		
 		Graf poln= Graf.poln(5);
 		poln.izpis();
+
+// Majhna sprememba 
 		
 		
 	}
