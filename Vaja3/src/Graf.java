@@ -64,22 +64,6 @@ public class Graf {
 		tocke.remove(tocka1.ime, tocka1);
 	}
 	
-	//metoda prazen vrne prazen graf z n toèkami
-	//za imena toèk so uporabljeni stringi
-	
-//	public static Graf prazen(int n) {
-//		Graf g = new Graf();
-//		final int RADIX = 10;
-//		for (int i = 1; i <= n; i += 1) {
-//			char ch = Character.forDigit(i, RADIX); // spremenimo i v tip char
-//			String ime = "tocka" + ch;
-//			Tocka novaTocka = new Tocka(ime);
-//			g.dodajTocko(novaTocka);
-//		}
-//		return g;
-//	}
-	
-//	pri tej metodi prazen pa sem za imena tock uporabil stevilke
 	
 	public static Graf prazen(int n) {
 		Graf graf = new Graf();
@@ -146,8 +130,24 @@ public class Graf {
 	
 	
 	
+	/*
+	 * metoda razporedi tocke grafa enakomerno na kroznico s polmeron r
+	 * in srediscem v (cx,cy)
+	 */
+	public void razporedi(double cx, double cy, double r){
+		int stTock = tocke.size(); //stevilo tock
+		double kot = (2*Math.PI)/ stTock; //kot ko dodajamo tocke
+		int i = 0;
+		
+		for (Tocka tocka: this.tocke.values()){
+			tocka.x = cx + r * Math.cos(kot * i);
+			tocka.y = cy + r * Math.sin(kot * i);
+			i += 1;
+			}
+			
+		}
+		
 	
-	}
-	
-	
+}
+
 	

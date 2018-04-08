@@ -1,4 +1,3 @@
-
 public class Test {
 
 	public static void main(String[] args) {
@@ -22,15 +21,18 @@ public class Test {
 		graf.dodajPovezavo(tocka2, tocka4);
 		
 		graf.dodajPovezavo(tocka3, tocka4);
-		
-//		graf.izpis();
+		graf.razporedi(200, 200, 200);
+//graf.izpis();
 		
 		Graf poln= Graf.poln(5);
+		poln.razporedi(300, 300, 300);
 		poln.izpis();
 
-// Majhna sprememba 
-		
-		
-	}
+//narišimo graf
+		Okno okno = new Okno("Testno");
+		okno.pack();
+		okno.setVisible(true);
+		okno.platno.narisi(poln);
 
+		}
 }

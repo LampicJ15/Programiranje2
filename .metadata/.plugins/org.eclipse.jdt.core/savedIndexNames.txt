@@ -9,6 +9,7 @@ INDEX VERSION 1.130+C:\Users\Uporabnik\Documents\GitHub\Programiranje2\.metadata
 1230538165.index
 4232500288.index
 3693261185.index
+2016523812.index
 3637040476.index
 2916426105.index
 2692035760.index
