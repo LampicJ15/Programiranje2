@@ -23,7 +23,6 @@ public class Platno extends JPanel implements MouseListener, MouseMotionListener
 	protected int klikX2;
 	protected int klikY2;
 	
-	
 	protected Set<Tocka> oznaceneTocke;
 	protected Tocka aktivnaTocka;
 	
@@ -31,7 +30,6 @@ public class Platno extends JPanel implements MouseListener, MouseMotionListener
 	protected Color barvaOzTock;
 	protected Color barvaAkTocke;
 	protected Color barvaPovezav;
-	
 	
 	
 	
@@ -52,6 +50,7 @@ public class Platno extends JPanel implements MouseListener, MouseMotionListener
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		addKeyListener(this);
+		this.setFocusable(true);
 		
 		}
 	
@@ -74,6 +73,7 @@ public class Platno extends JPanel implements MouseListener, MouseMotionListener
 		//narisemo povezave
 		for (Tocka tocka: graf.tocke.values()){
 			for (Tocka sosed: tocka.sosedi){
+				g.setColor(barvaPovezav);
 				g.drawLine(zaokrozi(tocka.x),zaokrozi(tocka.y),zaokrozi(sosed.x),zaokrozi(sosed.y));
 			}
 		}
@@ -94,7 +94,59 @@ public class Platno extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		//oznaci vse tocke
+		if (e.getKeyChar() == 'a') {
+			for (Tocka tocka: graf.tocke.values()) {
+				if (!oznaceneTocke.contains(tocka)) {
+					oznaceneTocke.add(tocka);
+				}
+			}
+			repaint();
+		}
+		
+		//oznaci vse tocke
+		if (e.getKeyChar() == 's') {
+			for (Tocka tocka: graf.tocke.values()) {
+				if (oznaceneTocke.contains(tocka)) {
+					oznaceneTocke.remove(tocka);
+				}
+			}
+			repaint();
+		}
+		
+		//dodaj povezave med vsemi oznacenimi tockami
+		if (e.getKeyChar() == 'c'){
+			for (Tocka tocka: oznaceneTocke) {
+				for (Tocka tocka2: oznaceneTocke ) {
+					if (tocka != tocka2 && !graf.povezava(tocka, tocka2)) {
+						graf.dodajPovezavo(tocka, tocka2);
+					}
+					
+				}
+			}
+			repaint();
+		}
+		
+		//izbrisi vse povezave med oznacenimi tockami
+		if (e.getKeyChar() == '\b'){
+			for (Tocka tocka: oznaceneTocke) {
+				for (Tocka tocka2:oznaceneTocke) {
+					if (tocka != tocka2 && graf.povezava(tocka, tocka2)) {
+						graf.odstraniPovezavo(tocka, tocka2);
+					}
+				}
+			}
+			repaint();
+		}
+		
+		//izbrisi vse oznacene tocke
+		if (e.getKeyChar() == 'd') {
+			for (Tocka tocka: oznaceneTocke) {
+				graf.odstraniTocko(tocka);
+			}
+			oznaceneTocke.clear();
+			repaint();
+		}
 		
 	}
 
